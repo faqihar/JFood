@@ -8,7 +8,11 @@
  */
 public class Location//create class Location
 {
-    // create variabel in class location
+    /**
+     * membuat variabel di class location
+     * variabel instance
+     * private hanya bisa diberikan pada member class
+     */
     private String province;
     private String description;
     private String city;
@@ -17,12 +21,19 @@ public class Location//create class Location
 
     /**
      * Constructor for objects of class Customer
-     */
+     * constructor seperti metode yang dipanggil ketika object di instance
+     * nama constructor harus sama dengan class
+     *  
+     *  @param province berfungsi untuk menginisialisasikan input province baru
+     *  @param description berfungsi untuk menginisialisasikan input description baru
+     *  @param city berfungsi untuk menginisialisasikan input city baru
+    */
     public Location(String city, String province, String description)
     {
         // initialise instance variables
  
     }
+    
     
     public String getProvince()
     {

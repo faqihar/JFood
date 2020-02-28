@@ -8,7 +8,11 @@
  */
 public class Customer//create class Customer
 {
-    // create variabel in class Customer
+    /**
+     * membuat variabel di class customer
+     * variabel instance
+     * private hanya bisa diberikan pada member class
+     */
     private int id;
     private String name;
     private String email;

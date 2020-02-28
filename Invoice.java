@@ -8,7 +8,11 @@
  */
 public class Invoice//create class invoice
 {
-    // create variabel in class Invoice
+    /**
+     * membuat variabel di class invoice
+     * variabel instance
+     * private hanya bisa diberikan pada member class
+     */
     private int id;
     private int idFood;
     private String date;
@@ -19,6 +23,14 @@ public class Invoice//create class invoice
 
     /**
      * Constructor for objects of class Customer
+     * constructor seperti metode yang dipanggil ketika object di instance
+     * nama constructor harus sama dengan class
+     *  
+     *  @param id berfungsi untuk menginisialisasikan input id baru
+     *  @param idFood berfungsi untuk menginisialisasikan input idFood baru
+     *  @param date berfungsi untuk menginisialisasikan input date baru
+     *  @param totalPrice berfungsi untuk menginisialisasikan totalPrice description baru
+     *  @param customer berfungsi untuk menginisialisasikan input customer baru
      */
     public Invoice(int id, int idFood, String date, Customer customer, int totalPrice)
     {
