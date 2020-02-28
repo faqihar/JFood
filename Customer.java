@@ -26,7 +26,11 @@ public class Customer//create class Customer
      */
     public Customer(int id, String name, String email, String password, String joinDate)
     {
-        // initialise instance variables
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.joinDate = joinDate;// initialise instance variables
  
     }
     
