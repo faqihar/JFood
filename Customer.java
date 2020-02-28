@@ -2,12 +2,13 @@
 /**
  * Write a description of class Customer here.
  *
- * @author (faqih)
- * @version (a version number or a date)
+ * @author Faqih Achmad
+ * @version 1.2 (27 feb 2020)
+ * 
  */
-public class Customer
+public class Customer//create class Customer
 {
-    // instance variables - replace the example below with your own
+    // create variabel in class Customer
     private int id;
     private String name;
     private String email;

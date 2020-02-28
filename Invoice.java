@@ -1,13 +1,14 @@
 
 /**
- * Write a description of class Customer here.
+ * Write a description of class Invoice here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Faqih Achmad
+ * @version 1.2 (27 feb 2020)
+ * 
  */
-public class Invoice
+public class Invoice//create class invoice
 {
-    // instance variables - replace the example below with your own
+    // create variabel in class Invoice
     private int id;
     private int idFood;
     private String date;

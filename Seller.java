@@ -1,13 +1,14 @@
 
 /**
- * Write a description of class Customer here.
+ * Write a description of class Seller here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Faqih Achmad
+ * @version 1.2 (27 feb 2020)
+ * 
  */
-public class Seller
+public class Seller//create class seller
 {
-    // instance variables - replace the example below with your own
+    //create variabel in class food
     private int id;
     private String name;
     private String email;

@@ -1,13 +1,14 @@
 
 /**
- * Write a description of class Customer here.
+ * Write a description of class Food here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Faqih Achmad
+ * @version 1.2 (27 feb 2020)
+ * 
  */
-public class Food
+public class Food //create class food
 {
-    // instance variables - replace the example below with your own
+    // create variabel in class food
     private int id;
     private String name;
     private Seller seller;
@@ -17,7 +18,7 @@ public class Food
     
 
     /**
-     * Constructor for objects of class Customer
+     *  
      */
     public Food(int id, String name, Seller seller, int price, String category)
     {

@@ -1,13 +1,14 @@
 
 /**
- * Write a description of class Customer here.
+ * Write a description of class Location here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Faqih Achmad
+ * @version 1.2 (27 feb 2020)
+ * 
  */
-public class Location
+public class Location//create class Location
 {
-    // instance variables - replace the example below with your own
+    // create variabel in class location
     private String province;
     private String description;
     private String city;
