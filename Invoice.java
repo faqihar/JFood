@@ -34,7 +34,11 @@ public class Invoice//create class invoice
      */
     public Invoice(int id, int idFood, String date, Customer customer, int totalPrice)
     {
-        // initialise instance variables
+        this.id = id;
+        this.idFood = idFood;
+        this.date = date;
+        this.customer = customer;
+        this.totalPrice = totalPrice;// initialise instance variables
  
     }
     
@@ -86,7 +90,7 @@ public class Invoice//create class invoice
     
     public void printData()
     {
-        
+        System.out.println(totalPrice);
     }
   
 }

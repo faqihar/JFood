@@ -35,7 +35,11 @@ public class Food //create class food
      */
     public Food(int id, String name, Seller seller, int price, String category)
     {
-        // initialise instance variables
+        this.id = id;
+        this.name = name;
+        this.seller = seller;
+        this.price = price;
+        this.category = category;// initialise instance variables
  
     }
     
@@ -136,7 +140,7 @@ public class Food //create class food
     
     public void printData()
     {
-     
+        System.out.println(name);
     }
      
 

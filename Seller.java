@@ -33,7 +33,11 @@ public class Seller//create class seller
      */
     public Seller(int id, String name, String email, String phoneNumber, Location location)
     {
-        // initialise instance variables
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.location = location;// initialise instance variables
  
     }
     
@@ -98,6 +102,7 @@ public class Seller//create class seller
     public void setName(String name)
     {
         this.name = name;
+        
     }
     
     /**
@@ -129,7 +134,7 @@ public class Seller//create class seller
     
       public void printData()
     {
-        System.out.println(name);
+        System.out.println("" + name);
     }
   
 

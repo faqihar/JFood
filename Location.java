@@ -30,7 +30,9 @@ public class Location//create class Location
     */
     public Location(String city, String province, String description)
     {
-        // initialise instance variables
+        this.city = city;
+        this.province = province;
+        this.description = description;// initialise instance variables
  
     }
     
