@@ -17,7 +17,7 @@ public class Food //create class food
     private String name;
     private Seller seller;
     private int price;
-    private String category;
+    private FoodCategory category;
     
     
 
@@ -33,7 +33,7 @@ public class Food //create class food
      *  @param category berfungsi untuk menginisialisasikan input category baru
      *  
      */
-    public Food(int id, String name, Seller seller, int price, String category)
+    public Food(int id, String name, Seller seller, int price, FoodCategory category)
     {
         this.id = id;
         this.name = name;
@@ -88,7 +88,7 @@ public class Food //create class food
      * @return category berfungsi untuk mengecek variabel category ke variabel instance
      */
     
-    public String getCategory()
+    public FoodCategory getCategory()
     {
         return category;
     }
@@ -133,14 +133,21 @@ public class Food //create class food
      * setter category untuk food
      * @param category untuk set ke instance variabel category
      */
-    public void setCategory(String category)
+    public void setCategory(FoodCategory category)
     {
         this.category = category;
     }
     
     public void printData()
     {
-        System.out.println(name);
+        System.out.println("==========FOOD========");
+        System.out.println("ID:" +id);
+        System.out.println("Name:" +name);
+        System.out.println("Seller:" +getSeller().getName());
+        System.out.println("City:" +getSeller().getLocation().getCity());
+        System.out.println("Price:" +price);
+        System.out.println("Category:" +category);
+        
     }
      
 

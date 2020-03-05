@@ -16,27 +16,22 @@ public class DatabaseFood//create class DatabaseFood
     private String[] listFood;
     
     
-
-    /**
-     * Constructor for objects of class Customer
-     * 
-     */
-    public DatabaseFood()
-    {
-        // initialise instance variables
- 
-    }
     
-    public boolean addFood(Food food)
+    public static boolean addFood(Food food)
     {
         return false;
     }
     
-     public boolean removeFood(Food food)
+     public static boolean removeFood(Food food)
     {
         return false;
     }
     
+     public static Food getFood(int id)
+    {
+        //samain id pake for loop
+        return null;
+    }
     
        public String[] getListFood()
     {

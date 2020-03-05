@@ -16,28 +16,18 @@ public class DatabaseSeller//create class DatabaseSeller
     private String[] listSeller;
     
     
-
-    /**
-     * Constructor for objects of class Customer
-     * 
-     */
-    public DatabaseSeller()
-    {
-        // initialise instance variables
- 
-    }
     
-    public boolean addSeller(Seller seller)
+    public static boolean addSeller(Seller seller)
     {
         return false;
     }
     
-     public boolean removeSeller(Seller seller)
+     public static boolean removeSeller(Seller seller)
     {
         return false;
     }
     
-     public Seller getSeller()
+     public static Seller getSeller()
     {
         return null;
     }
