@@ -18,6 +18,8 @@ public class Invoice//create class invoice
     private String date;
     private int totalPrice;
     private Customer customer;
+    private PaymentType paymentType;
+    private InvoiceStatus status;
     
     
 
@@ -32,13 +34,14 @@ public class Invoice//create class invoice
      *  @param totalPrice berfungsi untuk menginisialisasikan totalPrice description baru
      *  @param customer berfungsi untuk menginisialisasikan input customer baru
      */
-    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice)
+    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice, InvoiceStatus status)
     {
         this.id = id;
         this.idFood = idFood;
         this.date = date;
         this.customer = customer;
         this.totalPrice = totalPrice;// initialise instance variables
+        this.status = status;
  
     }
     
@@ -62,6 +65,20 @@ public class Invoice//create class invoice
         return totalPrice;
     }
     
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+    
+    public PaymentType getPaymentType()
+    {
+        return paymentType;
+    }
+    
+     public InvoiceStatus getInvoiceStatus()
+    {
+        return status;
+    }
     
     public void setId(int id)
     {
@@ -88,8 +105,25 @@ public class Invoice//create class invoice
         this.customer = customer;
     }
     
+    public void setPaymentType(PaymentType paymentType)
+    {
+        this.paymentType = paymentType;
+    }
+    
+    public void setInvoiceStatus(InvoiceStatus status)
+    {
+        this.status = status;
+    }
+    
     public void printData()
     {
+        System.out.println("=====INVOICE======");
+        System.out.println("ID:" +id);
+        System.out.println("Food ID:" +idFood);
+        System.out.println("Date:" +date);
+        System.out.println("Customer:" +getCustomer().getName());
+        System.out.println("Total Price:" +totalPrice);
+        System.out.println("Status:" +status);
         System.out.println(totalPrice);
     }
   

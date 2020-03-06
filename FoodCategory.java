@@ -1,8 +1,8 @@
 /**
  * Enumeration class FoodCategory - write a description of the enum class here
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author faqih achmad
+ * @version 
  */
 public enum FoodCategory
 {
