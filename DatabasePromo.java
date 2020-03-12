@@ -7,35 +7,35 @@
  * 
  */
 
-public class DatabaseSeller//create class DatabaseSeller
+public class DatabasePromo//create class DatabasePromo
 {
     /**
      * membuat variabel di class databaseFood
      * variabel instance
      * private hanya bisa diberikan pada member class
      */
-    private String[] listSeller;
+    private String[] listPromo;
     
     
     
-    public static boolean addSeller(Seller seller)
+    public static boolean addPromo(Promo promo)
     {
         return false;
     }
     
-     public static boolean removeSeller(Seller seller)
+     public static boolean removePromo(Promo promo)
     {
         return false;
     }
     
-     public static Seller getSeller()
+     public static Promo getPromo()
     {
         return null;
     }
     
-       public String[] getListSeller()
+       public String[] getListPromo()
     {
-        return listSeller;
+        return listPromo;
     }
  
   
