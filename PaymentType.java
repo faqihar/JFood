@@ -9,15 +9,15 @@ public enum PaymentType
 {
     Cashless("Cashless"), Cash("Cash");
     
-    private String category;
+    private String paymentType;
     
-    PaymentType(String category)
+    PaymentType(String paymentType)
     {
-        this.category = category;
+        this.paymentType = paymentType;
     }
     
     public String toString()
     {
-        return category;
+        return paymentType;
     }
 }
