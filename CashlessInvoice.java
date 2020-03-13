@@ -19,24 +19,29 @@ public class CashlessInvoice extends Invoice
  {
      super(id, food, date, customer, invoiceStatus);
  }
+ 
  public CashlessInvoice(int id, Food food, String date,
  Customer customer, InvoiceStatus invoiceStatus, Promo promo)
  {
      super(id, food, date, customer, invoiceStatus);
      this.promo = promo;
  }
+ 
  public PaymentType getPaymentType()
  {
      return PAYMENT_TYPE;
  }
+ 
  public Promo getPromo()
  {
      return promo;
  }
+ 
  public void setPromo(Promo promo)
  {
      this.promo = promo;
  }
+ 
  public void setTotalPrice()
  {
      if(
@@ -51,6 +56,7 @@ public class CashlessInvoice extends Invoice
          this.totalPrice = getFood().getPrice();
      }
  }
+ 
  public void printData()
  {
      if(
