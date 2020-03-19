@@ -149,6 +149,9 @@ public class Food //create class food
         System.out.println("Category:" +category);
         
     }
-     
+    
+      public String toString(){
+        return id+","+name+","+seller+","+price+","+category;
+    }
 
 }

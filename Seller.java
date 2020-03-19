@@ -131,10 +131,10 @@ public class Seller//create class seller
     {
         this.location = location;
     }
+
     
-      public void printData()
-    {
-        System.out.println("" + name);
+      public String toString(){
+        return id+","+name+","+email+","+phoneNumber+","+location;
     }
   
 

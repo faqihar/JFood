@@ -70,6 +70,10 @@ public class Location//create class Location
     {
         System.out.println(province);
     }
+    
+      public String toString(){
+        return province+","+description+","+city;
+    }
   
 
 }

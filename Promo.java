@@ -116,6 +116,7 @@ public class Promo//create class promo
         this.active = active;
     }
     
+    
       public void printData()
     {
         System.out.println("==========PROMO========");
@@ -126,6 +127,9 @@ public class Promo//create class promo
         System.out.println("Active:" +active);
       
     }
+    
+     public String toString(){
+        return id+","+code+","+discount+","+minPrice+","+active;
+    }
   
-
 }
