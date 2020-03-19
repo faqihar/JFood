@@ -7,12 +7,15 @@
  * 
  */
 
-  import java.util.Calendar;
-  import java.util.GregorianCalendar;
-  import java.text.SimpleDateFormat;
-  import java.util.*;
-  import java.text.*;
-  import java.util.regex.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.*;
+import java.text.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.regex.*;
 
 public class Customer//create class Customer
 {
@@ -36,9 +39,33 @@ public class Customer//create class Customer
     {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
-        this.joinDate = joinDate;// initialise instance variables
+        String emailRegex = "^[\\w&*_~]+(?:\\.[\\w&*_~]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+       Pattern emailPattern = Pattern.compile(emailRegex);
+       Matcher emailMatcher = emailPattern.matcher(email);
+       
+       if(emailMatcher.matches())
+       {
+           this.email=email;
+       }
+       else 
+       {
+           this.email="";
+       }
+       
+       String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
+       Pattern passwordPattern = Pattern.compile(passwordRegex);
+       Matcher passwordMatcher = passwordPattern.matcher(password);
+       
+       if(passwordMatcher.matches())
+       {
+           this.password=password;
+       }
+       else 
+       {
+           this.password="";
+       }
+       
+       this.joinDate = joinDate;
  
     }
     
@@ -46,24 +73,69 @@ public class Customer//create class Customer
     {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
-        joinDate = new GregorianCalendar (year, month, dayOfMonth);
+        String emailRegex = "^[\\w&*_~]+(?:\\.[\\w&*_~]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+       Pattern emailPattern = Pattern.compile(emailRegex);
+       Matcher emailMatcher = emailPattern.matcher(email);
+       
+       if(emailMatcher.matches())
+       {
+           this.email=email;
+       }
+       else 
+       {
+           this.email="";
+       }
+       
+       String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
+       Pattern passwordPattern = Pattern.compile(passwordRegex);
+       Matcher passwordMatcher = passwordPattern.matcher(password);
+       
+       if(passwordMatcher.matches())
+       {
+           this.password=password;
+       }
+       else 
+       {
+           this.password="";
+       }
+       
+       this.joinDate= new GregorianCalendar(dayOfMonth,month,year);
  
     }
     
     public Customer(int id, String name, String email, String password)
     {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
- 
+       this.id = id;
+       this.name = name;
+       String emailRegex = "^[\\w&*_~]+(?:\\.[\\w&*_~]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+       Pattern emailPattern = Pattern.compile(emailRegex);
+       Matcher emailMatcher = emailPattern.matcher(email);
+       
+       if(emailMatcher.matches())
+       {
+           this.email=email;
+       }
+       else 
+       {
+           this.email="";
+       }
+       
+       String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
+       Pattern passwordPattern = Pattern.compile(passwordRegex);
+       Matcher passwordMatcher = passwordPattern.matcher(password);
+       
+       if(passwordMatcher.matches())
+       {
+           this.password=password;
+       }
+       else 
+       {
+           this.password="";
+       }
     }
     
     
    
-    
     public int getId()
     {
         return id;
@@ -137,9 +209,9 @@ public class Customer//create class Customer
         }
     }
     
-    public void setJoinDate(int year, int month, int dayOfMonth)
+    public void setJoinDate(int dayOfMonth, int month, int year)
     {
-        joinDate = new GregorianCalendar (year, month, dayOfMonth);
+        joinDate = new GregorianCalendar (dayOfMonth, month, year);
     }
    
     
