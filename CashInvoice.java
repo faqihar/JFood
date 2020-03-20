@@ -12,38 +12,35 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
 /**
- * Write a description of class CashlessInvoice here.
+ * Write a description of class CashInvoice here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Faqih
+ * @version 
  */
-public class CashlessInvoice extends Invoice
+public class CashInvoice extends Invoice
 {
     // instance variables - replace the example below with your own
-  
-    private static final PaymentType PAYMENT_TYPE=PaymentType.Cashless;
-    private Promo promo;
+    private PaymentType PAYMENT_TYPE=PaymentType.Cash;
+    private int deliveryFee;
 
     /**
-     * Constructor for objects of class CashlessInvoice
+     * Constructor for objects of class CashInvoice
      */
-    public CashlessInvoice(int id, Food food, 
-    //Calendar date, 
-    Customer customer, InvoiceStatus invoiceStatus)
+    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
     {
-        super(id, food, 
-        //date, 
-        customer, invoiceStatus);
+        super(id, food, customer, invoiceStatus);
     }
-    
-    public CashlessInvoice(int id, Food food, 
-    //Calendar date, 
-    Customer customer, InvoiceStatus invoiceStatus, Promo promo)
+
+        /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus, int deliveryFee)
     {
-        super(id, food, 
-        //date, 
-        customer, invoiceStatus);
-        this.promo = promo;
+        super(id, food, customer, invoiceStatus);
+        this.deliveryFee=deliveryFee;
     }
     
     public PaymentType getPaymentType()
@@ -51,45 +48,30 @@ public class CashlessInvoice extends Invoice
         return PAYMENT_TYPE;
     }
     
-    public Promo getPromo()
+    public int getDeliveryFee()
     {
-        return promo;
+        return deliveryFee;
     }
     
-    public void setPromo(Promo promo)
+    public void setDeliveryFee(int deliveryFee)
     {
-        this.promo = promo;
+        this.deliveryFee=deliveryFee;
     }
-    
     
     public void setTotalPrice()
     {
-        if(
-        promo!=null &&
-        getPromo().getActive() == true && 
-        getFood().getPrice() > getPromo().getMinPrice())
-        {
-        super.totalPrice = getFood().getPrice() - promo.getDiscount();
-        }
+        if(getDeliveryFee()!= 0)
+        {super.totalPrice=getFood().getPrice()+getDeliveryFee();}
         else
-        {
-        super.totalPrice = getFood().getPrice();
-        }
+        {super.totalPrice=getFood().getPrice();}
     }
     
-  
-    public String toString()
+     public String toString()
     {
      
-        //if(getPromo().getActive() == true)
-       //{
-       // System.out.println("Promo: " +    getPromo().getCode());
-       // }
         
         String string = "";
-        if(promo == null || 
-        promo.getActive() == false || 
-        getFood().getPrice() < getPromo().getMinPrice())
+        if(deliveryFee == 0)
         {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMMM yyyy");
             LocalDateTime now = LocalDateTime.now(); 
@@ -111,9 +93,9 @@ public class CashlessInvoice extends Invoice
             ("================INVOICE================" +
             "\nID: " +super.getId() +
             "\nFood: " +super.getFood().getName() +
-            "\nDate: " +skrg.format(now)+ 
+            "\nDate: " +skrg.format(now)+
             "\nCustomer: " +super.getCustomer().getName() +
-            "\nPromo : " + getPromo().getCode() +
+            "\nDeliveryFee : " + getDeliveryFee() +
             "\nTotal Price: " +super.getTotalPrice() +
             "\nStatus: " +super.getInvoiceStatus() +
             "\nPayment Type: " +PAYMENT_TYPE + "\n");
@@ -121,49 +103,4 @@ public class CashlessInvoice extends Invoice
         System.out.println(string);
         return string;
     }
-    
- 
-    
-    /**public void printData()
-    {
-     
-        //if(getPromo().getActive() == true)
-       //{
-       // System.out.println("Promo: " +    getPromo().getCode());
-       // }
-        
-       
-        if(promo == null || 
-        promo.getActive() == false || 
-        getFood().getPrice() < getPromo().getMinPrice())
-        {
-            
-            System.out.println("================INVOICE================");
-            System.out.println("ID: " +super.getId());
-            System.out.println("Food: " +super.getFood().getName());
-            System.out.println("Date: " +super.getDate());
-            System.out.println("Customer: " +super.getCustomer().getName());
-            System.out.println("Total Price: " +getFood().getPrice());
-            System.out.println("Status: " +super.getInvoiceStatus());
-            System.out.println("Payment Type: " +PAYMENT_TYPE);
-            System.out  .println(" ");
-        }
-        else
-        {
-            System.out.println("================INVOICE================");
-            System.out.println("ID: " +super.getId());
-            System.out.println("Food: " +super.getFood().getName());
-            System.out.println("Date: " +super.getDate());
-            System.out.println("Customer: " +super.getCustomer().getName());
-            System.out.println("Promo: " +promo.getCode());
-            System.out.println("Total Price: " +getTotalPrice());
-            System.out.println("Status: " +super.getInvoiceStatus());
-            System.out.println("Payment Type: " +PAYMENT_TYPE);
-            System.out.println(" ");
-        }
-        
-    }
-    */
-    
-    
 }
