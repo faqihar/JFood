@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Write a description of class Invoice here.
@@ -15,7 +17,7 @@ public abstract class Invoice//create class invoice
      */
     private int id;
     private Food food;
-    private String date;
+    private Calendar date;
     protected int totalPrice;
     private Customer customer;
     private InvoiceStatus invoiceStatus;
@@ -29,7 +31,7 @@ public abstract class Invoice//create class invoice
      *  
 
      */
-    public Invoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
+    public Invoice(int id, Food food, Calendar date, Customer customer, InvoiceStatus invoiceStatus)
     {
         this.id = id;
         this.food = food;
@@ -50,7 +52,7 @@ public abstract class Invoice//create class invoice
         return food;
     }
     
-    public String getDate()
+    public Calendar getDate()
     {
         return date;
     }
@@ -83,7 +85,12 @@ public abstract class Invoice//create class invoice
         this.food = food;
     }
     
-    public void setDate(String date)
+    public void setDate(Calendar date)
+    {
+        this.date = date;
+    }
+    
+    public void setDate(int year, int month, int dayOfMonth)
     {
         this.date = date;
     }
@@ -103,7 +110,11 @@ public abstract class Invoice//create class invoice
         this.invoiceStatus = invoiceStatus;
     }
     
-    public void printData()
+   public String toString()
+    {  
+          return"ID:  "+id+"\nFood: "+food+"\nDate: "+date+"\nTotal Price: "+totalPrice+"\nCustomer"+customer+"\nInvoice Status:"+invoiceStatus;
+    }
+    /* public void printData()
     {
         
     }

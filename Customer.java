@@ -99,7 +99,7 @@ public class Customer//create class Customer
            this.password="";
        }
        
-       this.joinDate= new GregorianCalendar(dayOfMonth,month,year);
+       this.joinDate= new GregorianCalendar(year,month,dayOfMonth);
  
     }
     
@@ -132,6 +132,8 @@ public class Customer//create class Customer
        {
            this.password="";
        }
+       
+       this.joinDate= Calendar.getInstance();
     }
     
     
@@ -209,9 +211,9 @@ public class Customer//create class Customer
         }
     }
     
-    public void setJoinDate(int dayOfMonth, int month, int year)
+    public void setJoinDate(int year, int month, int dayOfMonth)
     {
-        joinDate = new GregorianCalendar (dayOfMonth, month, year);
+        joinDate = new GregorianCalendar (year, month-1, dayOfMonth);
     }
    
     

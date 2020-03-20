@@ -16,7 +16,7 @@ public class JFood
         Food food3 = new Food(3, "Burger", seller1, 35000, FoodCategory.Western);
         
         Customer customer1 = new Customer(1, "Butol", "Butol@gmail.com", "vtutol",2020,03,19);
-        Customer customer2 = new Customer(2, "Faqih", "faqih", "SayangFira123", new GregorianCalendar (19,01,2020));
+        Customer customer2 = new Customer(2, "Faqih", "faqih", "SayangFira123", new GregorianCalendar (2020,2,20));
         Customer customer3 = new Customer(3, "Dede", "Dede@gmail.com", "1234sdg31A");
      
         Promo promo1 = new Promo(1, "BER321", 10000, 12000, true);
