@@ -7,10 +7,43 @@
 public class JFood
 {
   
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Location location1 = new Location("Jakarta Timur", "Jakarta", "Rukom");
-        Seller seller1 = new Seller(1, "Niko", "faqih@gmail.com", "081388618382", location1);
+        Seller seller1 = new Seller(1, "Butol", "Butol@gmail.com", "081388618382", location1);
+
+        DatabaseSeller.addSeller(new Seller(1, "Faqeh", "faqih@gmail.com", "+62812349349", location1));
+        DatabaseSeller.addSeller(new Seller(2, "Roy", "Rey@gmail.com", "+6281388618284",location1));
+        DatabaseSeller.addSeller(new Seller(3, "Rey", "say@gmail.com", "+628872123939",location1));
+
+        for (Seller seller : DatabaseSeller.getSellerDatabase()) {
+            System.out.println(seller);
+        }
+
+        DatabaseCustomer.addCustomer(new Customer(1, "Faqih", "faqih@gmail.com", "Passw0rds", 1999, 3, 10));
+        DatabaseCustomer.addCustomer(new Customer(2, "faqih", "faqih@gmail.com", "Passw0rds", 1999, 3, 10));
+        DatabaseCustomer.addCustomer(new Customer(3, "wito", "wito@gmail.com", "Passw0rds", 1998, 3, 10));
+
+        for (Customer customer : DatabaseCustomer.getCustomerDatabase()) {
+            System.out.println(customer);
+        }
+
+        DatabaseFood.addFood(new Food(1, "French Fries", seller1, 10000, FoodCategory.Western));
+        DatabaseFood.addFood(new Food(2, "Sushi", seller1, 5000,  FoodCategory.Japanese));
+        DatabaseFood.addFood(new Food(3, "Burger", seller1, 10000, FoodCategory.Western));
+
+        for(Food food : DatabaseFood.getFoodDatabase())
+        {
+            System.out.println(food);
+        }
+
+        ArrayList<Food> food1 = new ArrayList<Food>();
+        ArrayList<Food> food2 = new ArrayList<Food>();
+        ArrayList<Food> food3 = new ArrayList<Food>();
+
+
+    }
+
+        /*
         Food food1 = new Food(1, "FrenchFries", seller1, 20000, FoodCategory.Western);
         Food food2 = new Food(2, "ayam Bucket", seller1, 80000, FoodCategory.Western);
         Food food3 = new Food(3, "Burger", seller1, 35000, FoodCategory.Western);
@@ -60,7 +93,8 @@ public class JFood
         //cashlessinvoice3.printData();
         //invoice1.printData();
 
-    }
+         */
+
 
 
 }

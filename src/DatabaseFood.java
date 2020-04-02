@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.*;
 /**
  * Write a description of class DatabaseFood here.
  *
@@ -13,30 +14,77 @@ public class DatabaseFood//create class DatabaseFood
      * variabel instance
      * private hanya bisa diberikan pada member class
      */
-    private String[] listFood;
-    
-    
-    
-    public static boolean addFood(Food food)
-    {
-        return false;
+    private static ArrayList<Food> FOOD_DATABASE = new ArrayList<Food>();
+    private static int LastId = 0;
+
+    public DatabaseFood() {
+
     }
-    
-     public static boolean removeFood(Food food)
-    {
-        return false;
+
+    public static ArrayList<Food> getFoodDatabase() {
+        return FOOD_DATABASE;
     }
-    
-     public static Food getFood(int id)
-    {
-        //samain id pake for loop
-        return null;
+
+    public static int getLastId() {
+        return LastId;
     }
-    
-       public String[] getListFood()
-    {
-        return listFood;
+
+    public static Food getFoodById(int id) {
+        Food returnValue = null;
+        for (Food foodDB : FOOD_DATABASE) {
+            if (foodDB.getId() == id) {
+                returnValue = foodDB;
+            }
+        }
+        return returnValue;
     }
- 
-  
+
+    public static ArrayList<Food> getFoodBySeller(Seller seller) {
+        ArrayList<Food> returnValue = null;
+        for (Food foodDB : FOOD_DATABASE) {
+            if (foodDB.getSeller() == seller) {
+                returnValue.add(foodDB);
+            }
+        }
+        return returnValue;
+    }
+
+    public static ArrayList<Food> getFoodByCategory(FoodCategory category) {
+        ArrayList<Food> returnValue = null;
+        for (Food foodDB : FOOD_DATABASE) {
+            if (foodDB.getCategory() == category) {
+                returnValue.add(foodDB);
+            }
+        }
+        return returnValue;
+    }
+
+
+    public static boolean addFood(Food food) {
+        for (Food foodDB : FOOD_DATABASE)
+        {
+            if (food.getName().equals(foodDB.getName()) &&
+                    food.getCategory().equals(foodDB.getCategory()) &&
+                    food.getSeller().equals(foodDB.getSeller()))
+            {
+                return false;
+            }
+        }
+
+        FOOD_DATABASE.add(food);
+        LastId=food.getId();
+        return true;
+    }
+        public static boolean removeFood(int id)
+        {
+            boolean returnValue = false;
+            for (Food foodDB : FOOD_DATABASE) {
+                if (foodDB.getId() == id) {
+                    FOOD_DATABASE.remove(id);
+                    returnValue = true;
+                }
+            }
+            return returnValue;
+        }
 }
+

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Write a description of class DatabaseFood here.
@@ -13,45 +14,64 @@ public class DatabaseCustomer//create class DatabaseCustomer
      * variabel instance
      * private hanya bisa diberikan pada member class
      */
-    private String[] listCustomer;
-    
-    
+    private static ArrayList<Customer> CUSTOMER_DATABASE =  new ArrayList<Customer>();
+    private static int LastId = 0;
 
-    /**
-     * Constructor for objects of class Customer
-     * 
-     */
     public DatabaseCustomer()
     {
-        // initialise instance variables
- 
+
     }
-    
-    public boolean addCustomer(Customer customer)
+
+    public static ArrayList<Customer> getCustomerDatabase()
     {
-        return false;
+        return CUSTOMER_DATABASE;
     }
-    
-     public boolean removeCustomer(Customer customer)
+    public static int getLastId()
     {
-        return false;
+        return LastId;
     }
-    
-       public Customer getCustomer(int id)
+
+    public static Customer getCustomerById(int id)
     {
-       
-        /*for(i=0; i>d; i++)
+        Customer returnValue = null;
+        for(Customer customerDB : CUSTOMER_DATABASE)
         {
-        
+            if(customerDB.getId() == id)
+            {
+                returnValue = customerDB;
+            }
         }
-        */
-        return null;
+        return returnValue;
     }
-    
-       public String[] getListCustomer()
+
+    public static boolean addCustomer(Customer customer)
     {
-        return listCustomer;
+        for(Customer customerDB : CUSTOMER_DATABASE)
+        {
+            if(customer.getName().equals(customerDB.getName()) &&
+                    customer.getEmail().equals(customerDB.getEmail()))
+            {
+                return false;
+            }
+        }
+        CUSTOMER_DATABASE.add(customer);
+        LastId = customer.getId();
+        return true;
+
     }
- 
-  
+
+    public static boolean removeCustomer(int id)
+    {
+        boolean returnValue = false;
+        for(Customer customerDB : CUSTOMER_DATABASE)
+        {
+            if(customerDB.getId() == id)
+            {
+                CUSTOMER_DATABASE.remove(id);
+                returnValue = true;
+            }
+        }
+        return returnValue;
+    }
+
 }

@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.regex.*;
+import java.util.*;
+
 
 /**
  * @author Faqih
@@ -13,179 +15,140 @@ import java.util.regex.*;
 **/
 public abstract class Invoice
 {
-    // instance variables - replace the example below with your own
-    /** bagian variable
-     */
+    //variable yang digunakan pada class Invoice
     private int id;
-    private Food food;
+    //private int idFood;
+    private ArrayList<Food> foods;
     private Calendar date;
     protected int totalPrice;
     private Customer customer;
+    //private PaymentType paymentType;
     private InvoiceStatus invoiceStatus;
 
+    private SimpleDateFormat tanggal = new SimpleDateFormat("dd MMMM yyyy");
+
     /**
-     * Constructor for objects of class Invoice
-     * Constructor ialah sebuah method yang namanya sama persis dengan nama class-nya
-     * Constructor sendiri berfungsi untuk memberikan nilai awal pada sebuah class ketika class tersebut dibuat dalam bentuk objek pada class lain
-     * Parameter yang  digunakan yaitu id, idfood, date, customer, dan totalprice.
+     * @param
      */
-    public Invoice(int id, Food food, /*Calendar date,*/ Customer customer, InvoiceStatus invoiceStatus)
+    public Invoice(int id, ArrayList<Food> foods, Customer customer)
     {
-        this.id=id;
-        this.food=food;
-        //this.date=date;
-        Date date = new Date();
-        this.customer=customer;
-        this.invoiceStatus=invoiceStatus;
+        this.id = id;
+        this.foods = foods;
+        //this.joinDate = Calendar.getInstance();
+        this.customer = customer;
+        this.totalPrice = totalPrice;
+        this.invoiceStatus = invoiceStatus.Ongoing;
     }
 
-    /*public void invoice()
-    {
-    }*/
-    
-    /** 
-     * method getter Id akan menampilkan return value sesuai dengan variable yang bersangkutan
-     * Getter Id untuk Invoice
+    /**
+     * @return nilai yang dikembalikan yaitu id
      */
     public int getId()
     {
         return id;
     }
-    
-    /** 
-     * method getter IdFood akan menampilkan return value sesuai dengan variable yang bersangkutan
-     * Getter IdFood untuk Invoice
+
+    /**
+     * @return nilai yang dikembalikan yaitu idFood
      */
-    public Food getFood()
+    public ArrayList<Food> getFoods()
     {
-        return food;
+        return foods;
     }
-    
-    /** 
-     * method getter Date akan menampilkan return value sesuai dengan variable yang bersangkutan
-     * Getter Date untuk Invoice
+
+    /**
+     * @return nilai yang dikembalikan yaitu date
      */
     public Calendar getDate()
     {
         return date;
     }
-    
-    /** 
-     * method getter TotalPrice akan menampilkan return value sesuai dengan variable yang bersangkutan
-     * Getter TotalPrice untuk Invoice
+
+    /**
+     * @return nilai yang dikembalikan yaitu totalPrice
      */
     public int getTotalPrice()
     {
         return totalPrice;
     }
-    
-    /** 
-     * method getter Customer akan menampilkan return value sesuai dengan variable yang bersangkutan
-     * Getter Customer untuk Invoice
+
+    /**
+     * @return nilai yang dikembalikan yaitu customer
      */
     public Customer getCustomer()
     {
-        return customer=customer;
+        return customer;
     }
-    
+
     public abstract PaymentType getPaymentType();
-    
+
     public InvoiceStatus getInvoiceStatus()
     {
         return invoiceStatus;
     }
-    
+
     /**
-     * method setter Id akan set sebuah nilai sesuai dengan variable
-     * Setter Id untuk Invoice
+     * @param parameter yang digunakan yaitu id
      */
     public void setId(int id)
     {
-        this.id=id;
+        this.id = id;
     }
-    
+
     /**
-     * method setter IdFoods akan set sebuah nilai sesuai dengan variable
-     * Setter IdFoods untuk Invoice
+     * @param parameter yang digunakan yaitu idFood
      */
-    public void setfood(Food food)
+    public void setFoods(ArrayList<Food> foods)
     {
-        this.food=food;
+        this.foods = foods;
     }
-    
+
     /**
-     * method setter Date akan set sebuah nilai sesuai dengan variable
-     * Setter Date untuk Invoice
+     * @param parameter yang digunakan yaitu date
      */
-    public Calendar setDate(Calendar date)
+    public void setDate(Calendar date)
     {
-        return date;
+        this.date = date;
     }
-    
-    public Calendar setDate(int year, int month, int dayOfMonth)
+
+    public void setDate(int year, int month, int dayOfMonth)
     {
-        return date=new GregorianCalendar(year, month-1, dayOfMonth);
+        date = new GregorianCalendar (year, month, dayOfMonth);
     }
-    
+
     /**
-     * method setter TotalPrice akan set sebuah nilai sesuai dengan variable
-     * Setter TotalPrice untuk Invoice
+     * @param parameter yang digunakan yaitu totalPrice
      */
-    public void setTotalPrice()
-    {
-        this.totalPrice=totalPrice;
-    }
-    
+    public abstract void setTotalPrice();
+
     /**
-     * method setter Customer akan set sebuah nilai sesuai dengan variable
-     * Setter Customer untuk Invoice
+     * @param parameter yang digunakan yaitu customer
      */
     public void setCustomer(Customer customer)
     {
-        this.customer=customer;
+        this.customer = customer;
     }
-      
-    public void setInvoiceStatus(InvoiceStatus invoiceStatus)
+
+    // public abstract void setPaymentType();
+
+    public void setInvoiceStatus(InvoiceStatus status)
     {
-        this.invoiceStatus=invoiceStatus;
+        this.invoiceStatus = invoiceStatus;
     }
-    
-    /*public abstract String toString()
-    {  
-         if(deliveryFee<0)
-        {
-            return
-            ("================INVOICE================" +
-            "\nID: " +super.getId() +
-            "\nFood: " +super.getFood().getName() +
-            "\nDate: " +super.getDate() +
-            "\nCustomer: " +super.getCustomer().getName() +
-            "\nDelivery Fee : " + 0+ 
-            "\nTotal Price: " +getFood().getPrice() +
-            "\nStatus: " +super.getInvoiceStatus() +
-            "\nPayment Type: " +PAYMENT_TYPE + "\n");
-            
-        }
-        else
-        {
-            
-            return
-            ("================INVOICE================" +
-            "\nID: " +super.getId() +
-            "\nFood: " +super.getFood().getName() +
-            "\nDate: " +super.getDate() +
-            "\nCustomer: " +super.getCustomer().getName() +
-            "\nDelivery Fee : " + this.getDeliveryFee() +
-            "\nTotal Price: " +super.getTotalPrice() +
-            "\nStatus: " +super.getInvoiceStatus() +
-            "\nPayment Type: " +PAYMENT_TYPE + "\n");
-            
-        }
-        
-    } ;*/
- }
-        
-    /* /**
-     * Untuk mencetak data sesuai dengan value dalam kurung
-     *
-    public abstract void printData();*/
+
+    /*
+    public abstract void printData();
+
+    {
+        System.out.println("==========INVOICE==========");
+        System.out.println("ID: "+id);
+        System.out.println("Food ID: "+idFood);
+        System.out.println("Date: "+date);
+        System.out.println("Customer: "+getCustomer().getName());
+        System.out.println("Total Price: "+totalPrice);
+        System.out.println("Status: "+status);
+
+    }
+    */
+    public abstract String toString();
+}

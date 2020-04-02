@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.*;
 /**
  * Write a description of class DatabaseFood here.
  *
@@ -6,37 +7,71 @@
  * @version 1.2 (27 feb 2020)
  * 
  */
-
-public class DatabasePromo//create class DatabasePromo
+public class DatabasePromo
 {
-    /**
-     * membuat variabel di class databaseFood
-     * variabel instance
-     * private hanya bisa diberikan pada member class
-     */
-    private String[] listPromo;
-    
-    
-    
-    public static boolean addPromo(Promo promo)
-    {
-        return false;
+    private ArrayList<Promo> PROMO_DATABASE;
+    private int lastId = 0;
+
+    public ArrayList<Promo> getPromoDatabase(){
+        return PROMO_DATABASE;
     }
-    
-     public static boolean removePromo(Promo promo)
-    {
-        return false;
+
+    public int getLastId(){
+        return lastId;
     }
-    
-     public static Promo getPromo()
-    {
+
+    public Promo getPromoById(int id){
+        for (Promo promo : PROMO_DATABASE) {
+            if (promo.getId() == id) {
+                return promo;
+            }
+        }
         return null;
     }
-    
-       public String[] getListPromo()
-    {
-        return listPromo;
+
+    public Promo getPromoByCode(String code){
+        for (Promo promo : PROMO_DATABASE) {
+            if (promo.getCode() == code) {
+                return promo;
+            }
+        }
+        return null;
     }
- 
-  
+
+    public boolean addPromo(Promo promo){
+        PROMO_DATABASE.add(promo);
+        lastId = promo.getId();
+        return true;
+    }
+
+    public boolean activetePromo(int id){
+        for (Promo promo : PROMO_DATABASE) {
+            if (!promo.getActive()) {
+                promo.setActive(true);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deactivatePromo(int id){
+        for (Promo promo : PROMO_DATABASE) {
+            if (promo.getActive()) {
+                promo.setActive(false);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean remove(int id){
+        for(int i = 0; i < PROMO_DATABASE.size(); i++){
+            Promo promo = PROMO_DATABASE.get(i);
+            if (promo.getId() == id){
+                PROMO_DATABASE.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
 }
