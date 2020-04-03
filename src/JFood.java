@@ -4,6 +4,7 @@
   import java.util.*;
   import java.text.*;
   import java.util.regex.*;
+
 public class JFood
 {
   
@@ -45,14 +46,27 @@ public class JFood
 
 */
 
-        DatabasePromo.addPromo(new Promo(DatabaseFood.getLastId()+1, "BER321", 10000, 12000, false));
-        DatabasePromo.addPromo(new Promo(DatabaseFood.getLastId()+1, "BE1231", 12000, 30000, true));
+        DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId()+1, "BER321", 10000, 12000, false));
+        DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId()+1, "BE1231", 12000, 30000, true));
 
         for(Promo promo : DatabasePromo.getPromoDatabase())
         {
             System.out.println(promo.getCode());
         }
 
+        ArrayList<Food> one = new ArrayList<Food>();
+        one.add(DatabaseFood.getFoodById(1));
+        one.add(DatabaseFood.getFoodById(2));
+
+        DatabaseInvoice.addInvoice(new CashInvoice(1, one, DatabaseCustomer.getCustomerById(1)));
+
+        DatabaseInvoice.getInvoiceByCustomer(1);
+
+        DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId()+1, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(1), InvoiceStatus.Ongoing, 5000));
+        DatabaseInvoice.getInvoiceByCustomer(1);
+
+        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(1), InvoiceStatus.Ongoing, 5000));
+        DatabaseInvoice.getInvoiceByCustomer(1);
     }
 
         /*
