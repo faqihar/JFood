@@ -9,62 +9,44 @@ import java.util.*;
  * 
  */
 
-public class DatabaseSeller//create class DatabaseSeller
+public class DatabaseSeller
 {
-    /**
-     * membuat variabel di class databaseFood
-     * variabel instance
-     * private hanya bisa diberikan pada member class
-     */
-    private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<Seller>();
-    private static int LastId = 0;
+    private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<>();
+    private static int lastId = 0;
 
-    public DatabaseSeller()
-    {
-
-    }
-    public static ArrayList<Seller> getSellerDatabase()
-    {
+    public static ArrayList<Seller> getSellerDatabase(){
         return SELLER_DATABASE;
     }
-    public static int getLastId()
-    {
-        return LastId;
+
+    public static int getLastId(){
+        return lastId;
     }
 
-    public static Seller getSellerById(int id)
-    {
-        Seller returnValue = null;
-        for(Seller sellerDB : SELLER_DATABASE)
-        {
-            if(sellerDB.getId() == id)
-            {
-                returnValue = sellerDB;
+    public static Seller getSellerById(int id){
+        for (Seller sell : SELLER_DATABASE){
+            if(sell.getId() == id){
+                return sell;
             }
+
         }
-        return returnValue;
+        return null;
     }
+    public static boolean addSeller(Seller seller){
 
-    public static boolean addSeller(Seller seller)
-    {
-
-        for(Seller sellerDB : SELLER_DATABASE)
-        {
-            if(seller.getName().equals(sellerDB.getName()) &&
-                    seller.getEmail().equals(sellerDB.getEmail()) &&
-                    seller.getPhoneNumber().equals(sellerDB.getPhoneNumber()))
-            {
-                return false;
-            }
-        }
         SELLER_DATABASE.add(seller);
-        LastId = seller.getId();
+        lastId = seller.getId();
         return true;
+
     }
 
-    public static boolean removeSeller(int id)
-    {
-        return true;
+    public static boolean removeSeller(int id){
+        for(Seller sell : SELLER_DATABASE){
+            if(sell.getId()==id){
+                SELLER_DATABASE.remove(sell);
+                return true;
+            }
+        }
+        return false;
     }
 
 }
