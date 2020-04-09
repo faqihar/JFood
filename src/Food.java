@@ -151,7 +151,13 @@ public class Food //create class food
     }
     
       public String toString(){
-        return id+","+name+","+seller+","+price+","+category;
-    }
+          return "==========FOOD==========" +
+                  "\nId = " + getId() +
+                  "\nName = " + getName() +
+                  "\nSeller = " + getSeller().getName() +
+                  "\nCity = " + seller.getLocation().getCity() +
+                  "\nPrice = " + getPrice() +
+                  "\nCategory = " + getCategory().toString() + "\n";
+      }
 
 }

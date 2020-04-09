@@ -7,17 +7,19 @@
  */
 public enum InvoiceStatus
 {
-    Ongoing("Ongoing"), Finished("Finished"), Canceled("Canceled");
-    
-    private String category;
-    
-    InvoiceStatus(String category)
+    Ongoing("Ongoing"),
+    Finished("Finished"),
+    Cancelled("Canceled");
+
+    private String status;
+
+    InvoiceStatus(String status)
     {
-        this.category = category; 
+        this.status = status;
     }
-    
+
     public String toString()
     {
-        return category;
+        return this.status;
     }
 }

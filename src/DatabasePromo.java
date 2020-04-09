@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.*;
+
+
 /**
  * Write a description of class DatabaseFood here.
  *
@@ -7,7 +9,6 @@ import java.util.*;
  * @version 1.2 (27 feb 2020)
  * 
  */
-import java.util.ArrayList;
 
 /**
  * Write a description of class DatabasePromo here.
@@ -37,7 +38,7 @@ public class DatabasePromo
         return lastId;
     }
 
-    public static Promo getPromoById(int id)
+    public static Promo getPromoById(int id) throws PromoNotFoundException
     {
         for(Promo promo : PROMO_DATABASE)
         {
@@ -46,7 +47,7 @@ public class DatabasePromo
                 return promo;
             }
         }
-        return null;
+        throw new PromoNotFoundException(id);
     }
 
     public static Promo getPromoByCode(String code)
@@ -61,22 +62,30 @@ public class DatabasePromo
         return null;
     }
 
-    public static boolean addPromo(Promo promo)
+    public static boolean addPromo(Promo promo) throws PromoCodeAlreadyExistsException
     {
+        for(Promo pro : PROMO_DATABASE){
+            if(pro.getCode() == promo.getCode()){
+                throw new PromoCodeAlreadyExistsException(promo);
+            }
+        }
         PROMO_DATABASE.add(promo);
         lastId = promo.getId();
         return true;
     }
 
-    public static boolean removePromo(int id)
+    public static boolean removePromo(int id) throws PromoNotFoundException
     {
-        for(Promo promo : PROMO_DATABASE) {
-            if(promo.getId() == id) {
-                PROMO_DATABASE.remove(promo);
+        for(int i = 0;  i < PROMO_DATABASE.size(); i++)
+        {
+            Promo promo = PROMO_DATABASE.get(i);
+            if (id == promo.getId())
+            {
+                PROMO_DATABASE.remove(id);
                 return true;
             }
         }
-        return false;
+        throw new PromoNotFoundException(id);
     }
 
     public static boolean activatePromo(int id)
@@ -85,7 +94,7 @@ public class DatabasePromo
         {
             if(promo.getId() == id)
             {
-                promo.setActive(false);
+                promo.setActive(true);
                 return true;
             }
         }
@@ -94,9 +103,11 @@ public class DatabasePromo
 
     public static boolean deactivatePromo(int id)
     {
-        for (Promo promo : PROMO_DATABASE) {
-            if (promo.getId() == id) {
-                PROMO_DATABASE.remove(promo);
+        for(Promo promo:PROMO_DATABASE)
+        {
+            if (id == promo.getId())
+            {
+                promo.setActive(false);
                 return true;
             }
         }

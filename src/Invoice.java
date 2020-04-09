@@ -34,10 +34,12 @@ public abstract class Invoice
     {
         this.id = id;
         this.foods = foods;
-        //this.joinDate = Calendar.getInstance();
+        Calendar now = Calendar.getInstance();
+        this.date = now;
         this.customer = customer;
-        this.totalPrice = totalPrice;
-        this.invoiceStatus = invoiceStatus.Ongoing;
+        this.invoiceStatus = InvoiceStatus.Ongoing;
+        //this.totalPrice = totalPrice;
+        //this.invoiceStatus = invoiceStatus.Ongoing;
     }
 
     /**
@@ -133,7 +135,7 @@ public abstract class Invoice
 
     public void setInvoiceStatus(InvoiceStatus status)
     {
-        this.invoiceStatus = invoiceStatus;
+        this.invoiceStatus = status;
     }
 
     /*

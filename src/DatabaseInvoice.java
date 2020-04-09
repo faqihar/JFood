@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.lang.reflect.Array;
 
 /**
  * Write a description of class DatabaseFood here.
@@ -36,14 +37,20 @@ public class DatabaseInvoice{
 
             }
         }
-        return LIST_INVOICE_BY_CUSTOMER;
+        if (LIST_INVOICE_BY_CUSTOMER == null)
+        {
+            return null;
+        } else
+        {
+            return LIST_INVOICE_BY_CUSTOMER;
+        }
     }
 
     public static boolean addInvoice(Invoice invoice)
     {
-        for (Invoice invoice1 : INVOICE_DATABASE)
+        for(Invoice invoiceCheck:INVOICE_DATABASE)
         {
-            if(invoice1.getInvoiceStatus().equals(invoice.getInvoiceStatus().Ongoing))
+            if (invoiceCheck.getInvoiceStatus() == InvoiceStatus.Ongoing)
             {
                 return false;
             }
@@ -53,10 +60,14 @@ public class DatabaseInvoice{
         return true;
     }
 
-    public static boolean changeInvoice(int id, InvoiceStatus invoiceStatus){
-        for(Invoice struc : INVOICE_DATABASE){
-            if(struc.getInvoiceStatus() == InvoiceStatus.Ongoing && struc.getId() == id){
-                INVOICE_DATABASE.remove(invoiceStatus);
+
+    public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus)
+    {
+        for(Invoice invoice:INVOICE_DATABASE)
+        {
+            if (id == invoice.getId() && invoice.getInvoiceStatus() == InvoiceStatus.Ongoing)
+            {
+                invoice.setInvoiceStatus(invoiceStatus);
                 return true;
             }
         }
