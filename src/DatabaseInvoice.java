@@ -20,17 +20,17 @@ public class DatabaseInvoice{
         return lastId;
     }
 
-    public static Invoice getInvoiceById(int id){
+    public static Invoice getInvoiceById(int id) throws InvoiceNotFoundException{
         for(Invoice invoice : INVOICE_DATABASE){
             if(invoice.getId() == id){
                 return invoice;
             }
         }
-        return null;
+        throw new InvoiceNotFoundException(id);
     }
 
     public static ArrayList<Invoice> getInvoiceByCustomer(int customerId) {
-        ArrayList<Invoice> LIST_INVOICE_BY_CUSTOMER = new ArrayList<Invoice>();
+        ArrayList<Invoice> LIST_INVOICE_BY_CUSTOMER = new ArrayList <Invoice>();
         for (Invoice invoice : INVOICE_DATABASE) {
             if (invoice.getCustomer().getId() == customerId) {
                 LIST_INVOICE_BY_CUSTOMER.add(invoice);
@@ -46,13 +46,12 @@ public class DatabaseInvoice{
         }
     }
 
-    public static boolean addInvoice(Invoice invoice)
+    public static boolean addInvoice(Invoice invoice) throws OngoingInvoiceAlreadyExistsException
     {
-        for(Invoice invoiceCheck:INVOICE_DATABASE)
-        {
-            if (invoiceCheck.getInvoiceStatus() == InvoiceStatus.Ongoing)
-            {
-                return false;
+        int customerId = invoice.getCustomer().getId();
+        for (Invoice _invoice : INVOICE_DATABASE) {
+            if (_invoice.getCustomer().getId() == customerId && _invoice.getInvoiceStatus() == InvoiceStatus.Ongoing){
+                throw new OngoingInvoiceAlreadyExistsException(invoice);
             }
         }
         INVOICE_DATABASE.add(invoice);
@@ -74,14 +73,14 @@ public class DatabaseInvoice{
         return false;
     }
 
-    public static boolean removeInvoiceStatus(int id){
+    public static boolean removeInvoiceStatus(int id) throws InvoiceNotFoundException{
         for(Invoice struc : INVOICE_DATABASE){
             if(struc.getId() == id){
                 INVOICE_DATABASE.remove(struc);
                 return true;
             }
         }
-        return false;
+        throw new InvoiceNotFoundException(id);
     }
 
 }

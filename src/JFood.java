@@ -54,7 +54,7 @@ public class JFood {
         try {
             DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, food2, DatabaseCustomer.getCustomerById(1), 2000));
             DatabaseInvoice.getInvoiceByCustomer(1).get(DatabaseInvoice.getInvoiceByCustomer(1).size() - 1).setTotalPrice();
-        }catch(CustomerNotFoundException e)
+        }catch(CustomerNotFoundException | OngoingInvoiceAlreadyExistsException e)
         {
             System.err.println(e.getMessage());
         }
@@ -62,7 +62,7 @@ public class JFood {
         try {
             DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, food3, DatabaseCustomer.getCustomerById(1)));
             DatabaseInvoice.getInvoiceByCustomer(1).get(DatabaseInvoice.getInvoiceByCustomer(1).size() - 1).setTotalPrice();
-        }catch(CustomerNotFoundException e){
+        }catch(CustomerNotFoundException | OngoingInvoiceAlreadyExistsException e){
             System.err.println(e.getMessage());
         }
 
@@ -87,7 +87,7 @@ public class JFood {
 
         try
         {
-            DatabasePromo.getPromoById(999);
+            DatabasePromo.getPromoById(1);
         }
         catch (PromoNotFoundException notfound)
         {
@@ -96,7 +96,7 @@ public class JFood {
 
         try
         {
-            DatabaseFood.getFoodById(11);
+            DatabaseFood.getFoodById(2);
         }
         catch (FoodNotFoundException notfound)
         {
@@ -105,7 +105,7 @@ public class JFood {
 
         try
         {
-            DatabaseCustomer.getCustomerById(999);
+            DatabaseCustomer.getCustomerById(2);
         }
         catch (CustomerNotFoundException notfound)
         {
@@ -127,7 +127,7 @@ public class JFood {
         {
             DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, makan, DatabaseCustomer.getCustomerById(1), promo1));
         }
-        catch (CustomerNotFoundException notfound)
+        catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistsException notfound)
         {
             System.out.println(notfound.getMessage() + "\n");
         }
@@ -136,7 +136,7 @@ public class JFood {
         {
             DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, makan, DatabaseCustomer.getCustomerById(2), promo1));
         }
-        catch (CustomerNotFoundException notfound)
+        catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistsException notfound)
         {
             System.out.println(notfound.getMessage() + "\n");
         }
@@ -145,7 +145,7 @@ public class JFood {
         {
             DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, makan, DatabaseCustomer.getCustomerById(3), promo1));
         }
-        catch (CustomerNotFoundException notfound)
+        catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistsException notfound)
         {
             System.out.println(notfound.getMessage() + "\n");
         }
@@ -183,7 +183,7 @@ public class JFood {
             DatabaseInvoice.addInvoice(new CashInvoice (DatabaseInvoice.getLastId() + 1, pertama, DatabaseCustomer.getCustomerById(1)));
 
         }
-        catch(CustomerNotFoundException error){
+        catch(CustomerNotFoundException | OngoingInvoiceAlreadyExistsException error){
 
             System.out.println(error.getMessage());
 
@@ -194,7 +194,7 @@ public class JFood {
             DatabaseInvoice.addInvoice(new CashInvoice (DatabaseInvoice.getLastId() + 1, pertama, DatabaseCustomer.getCustomerById(2)));
 
         }
-        catch(CustomerNotFoundException error){
+        catch(CustomerNotFoundException | OngoingInvoiceAlreadyExistsException error){
 
             System.out.println(error.getMessage());
 
@@ -205,7 +205,7 @@ public class JFood {
             DatabaseInvoice.addInvoice(new CashInvoice (DatabaseInvoice.getLastId() + 1, pertama, DatabaseCustomer.getCustomerById(3)));
 
         }
-        catch(CustomerNotFoundException error){
+        catch(CustomerNotFoundException | OngoingInvoiceAlreadyExistsException error){
 
             System.out.println(error.getMessage());
 
