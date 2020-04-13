@@ -12,6 +12,7 @@ public class JFood {
         System.out.println("=====MODUL 7=====");
         Location location1 = new Location("Kota Jakarta", "Jawa Barat", "Enakku");
         Seller seller1 = new Seller(1, "Butol", "Butol@gmail.com", "081388618382", location1);
+        Promo promo1 = new Promo(1, "BER321", 5000, 10000, true);
 
         ArrayList<Food> food1 = new ArrayList<Food>();
         ArrayList<Food> food2 = new ArrayList<Food>();
@@ -84,28 +85,147 @@ public class JFood {
             System.err.println(e.getMessage());
         }
 
-        try {
-            DatabasePromo.removePromo(99);
-        } catch (PromoNotFoundException e) {
-            System.err.println(e.getMessage());
-        }
-
-
-        System.out.println("=====MASUK KE DATABASE PROMO=====");
-
-        for (Promo promo : DatabasePromo.getPromoDatabase()) {
-            System.out.println(promo.toString());
-        }
-
-        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
+        try
         {
-            Thread calculate = new Thread(new PriceCalculator(invoice));
-            calculate.start();
+            DatabasePromo.getPromoById(999);
+        }
+        catch (PromoNotFoundException notfound)
+        {
+            System.out.println(notfound.getMessage() + "\n");
         }
 
+        try
+        {
+            DatabaseFood.getFoodById(11);
+        }
+        catch (FoodNotFoundException notfound)
+        {
+            System.out.println(notfound.getMessage() + "\n");
+        }
 
+        try
+        {
+            DatabaseCustomer.getCustomerById(999);
+        }
+        catch (CustomerNotFoundException notfound)
+        {
+            System.out.println(notfound.getMessage() + "\n");
+        }
+
+        ArrayList<Food> makan = new ArrayList<>();
+        try
+        {
+            makan.add(DatabaseFood.getFoodById(1));
+            makan.add(DatabaseFood.getFoodById(2));
+        }
+        catch (FoodNotFoundException notfound)
+        {
+            System.out.println(notfound.getMessage() + "\n");
+        }
+
+        try
+        {
+            DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, makan, DatabaseCustomer.getCustomerById(1), promo1));
+        }
+        catch (CustomerNotFoundException notfound)
+        {
+            System.out.println(notfound.getMessage() + "\n");
+        }
+
+        try
+        {
+            DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, makan, DatabaseCustomer.getCustomerById(2), promo1));
+        }
+        catch (CustomerNotFoundException notfound)
+        {
+            System.out.println(notfound.getMessage() + "\n");
+        }
+
+        try
+        {
+            DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, makan, DatabaseCustomer.getCustomerById(3), promo1));
+        }
+        catch (CustomerNotFoundException notfound)
+        {
+            System.out.println(notfound.getMessage() + "\n");
+        }
+
+        for(Invoice invoice : DatabaseInvoice.getInvoiceDatabase()){
+
+            Thread object = new Thread(new PriceCalculator(invoice));
+            object.start();
+
+        }
+
+        System.out.println("=============================YANG MASUK DATABASE PROMO============================");
+        System.out.println(DatabasePromo.getPromoDatabase());
+        System.out.println("=============================YANG MASUK DATABASE SELLER============================");
+        System.out.println(DatabaseSeller.getSellerDatabase());
+        System.out.println("=============================YANG MASUK DATABASE FOOD============================");
+        System.out.println(DatabaseFood.getFoodDatabase());
+        System.out.println("=============================YANG MASUK DATABASE CUSTOMER============================");
+        System.out.println(DatabaseCustomer.getCustomerDatabase());
+
+        ArrayList<Food> pertama = new ArrayList<Food>();
+        try {
+
+            pertama.add(DatabaseFood.getFoodById(1));
+
+        }
+        catch(FoodNotFoundException error){
+
+            System.out.println(error.getMessage());
+
+        }
+
+        try {
+
+            DatabaseInvoice.addInvoice(new CashInvoice (DatabaseInvoice.getLastId() + 1, pertama, DatabaseCustomer.getCustomerById(1)));
+
+        }
+        catch(CustomerNotFoundException error){
+
+            System.out.println(error.getMessage());
+
+        }
+
+        try {
+
+            DatabaseInvoice.addInvoice(new CashInvoice (DatabaseInvoice.getLastId() + 1, pertama, DatabaseCustomer.getCustomerById(2)));
+
+        }
+        catch(CustomerNotFoundException error){
+
+            System.out.println(error.getMessage());
+
+        }
+
+        try {
+
+            DatabaseInvoice.addInvoice(new CashInvoice (DatabaseInvoice.getLastId() + 1, pertama, DatabaseCustomer.getCustomerById(3)));
+
+        }
+        catch(CustomerNotFoundException error){
+
+            System.out.println(error.getMessage());
+
+        }
+
+        for(Invoice invoice : DatabaseInvoice.getInvoiceDatabase()){
+
+            Thread object = new Thread(new PriceCalculator(invoice));
+            object.start();
+
+        }
+
+        System.out.println("=============================YANG MASUK DATABASE INVOICE============================");
+        System.out.println(DatabaseInvoice.getInvoiceDatabase());
     }
+
+
 }
+
+
 
 /*
     public static void main(String[] args) {
