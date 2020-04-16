@@ -175,19 +175,13 @@ public class Customer//create class Customer
     
     public void setEmail(String email)
     {
-        String pattern =  "^[a-zA-Z0-9_+&*-]+(?:\\."+  
-                            "[a-zA-Z0-9_+&*-]+)*@" +  
-                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" +  
-                            "A-Z]{2,7}$"+
-                            "\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b";
-        Pattern p = Pattern.compile(pattern);
-        Matcher m = p.matcher(email);
-        if (m.find()) {
-            System.out.println("Email : " + m.group());
+        if (java.util.regex.Pattern.matches("(([a-zA-Z0-9&\\*_~]+(\\.?))+)[@]((\\w+)([\\.\\-]?))+", email))
+        {
             this.email = email;
-        } else {
-            System.out.println("Email : null");
-            this.email = email;
+        }
+        else{
+            this.email = null;
+            this.email = "";
         }
     }
     
@@ -221,14 +215,19 @@ public class Customer//create class Customer
     {
        if(joinDate != null)
        {
-           return"ID:  "+id+"\nName: "+name+"\nEmail: "+email+"\nPassword: "+password+"\nDate: "+
-           joinDate.get(Calendar.DAY_OF_MONTH)+"/"+
-           joinDate.get(Calendar.MONTH)+"/"+
-           joinDate.get(Calendar.YEAR);
+           return "=========Customer========\n" +
+                   "Id              : " +getId() + "\n" +
+                   "Name            : " +getName() + "\n"+
+                   "Email           : " +getEmail() + "\n"+
+                   "Password        : "  +getPassword() + "\n"+
+                   "Date            : "  + joinDate.get(Calendar.DAY_OF_MONTH)+"/"+
+                   joinDate.get(Calendar.MONTH)+"/"+
+                   joinDate.get(Calendar.YEAR);
         }
        else
        {    
            return"ID:  "+id+"\nName: "+name+"\nEmail: "+email+"\nPassword: "+password+"\n";
+
         }
     }
     

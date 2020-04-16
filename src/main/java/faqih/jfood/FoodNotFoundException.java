@@ -5,7 +5,7 @@ public class FoodNotFoundException extends Exception {
 
     public FoodNotFoundException(int food_input) {
         super("Food ID : ");
-        this.food_error=food_input;
+        this.food_error = food_input;
     }
 
     public String getMessage()
