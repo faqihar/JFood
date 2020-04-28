@@ -4,6 +4,7 @@ import faqih.jfood.*;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/customer")
+@CrossOrigin(origins = "*", allowedHeaders = "")
 @RestController
 public class CustomerController {
 

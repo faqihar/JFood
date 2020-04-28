@@ -29,7 +29,7 @@ public class JFood {
         DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"Bakso Urat", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 1000, FoodCategory.Noddles));
         DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"Bakso Buntut", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 1500, FoodCategory.Noddles));
         DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"Nasi Goreng", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 15000, FoodCategory.Rice));
-
+        
         SpringApplication.run(JFood.class, args);
     }
 }

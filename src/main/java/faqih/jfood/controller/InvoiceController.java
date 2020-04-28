@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RequestMapping("/invoice")
+@CrossOrigin(origins = "*", allowedHeaders = "")
 @RestController
 public class InvoiceController {
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -49,11 +50,35 @@ public class InvoiceController {
         }
     }
 
+    @RequestMapping(value = "/createCashInvoice", method = RequestMethod.POST)
+    public Invoice addCashInvoice(@RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,
+                                  @RequestParam(value="customerId") int customerId,
+                                  @RequestParam(value="deliveryFee", required = false, defaultValue = "0") int deliveryFee)
+    {
+        ArrayList<Food> foods = new ArrayList<>();
+        for (int food : foodIdList) {
+            try {
+                foods.add(DatabaseFood.getFoodById(food));
+            } catch (FoodNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        try {
+            Invoice invoice = new CashInvoice(DatabaseInvoice.getLastId()+1, foods,
+                    DatabaseCustomer.getCustomerById(customerId), deliveryFee);
+            DatabaseInvoice.addInvoice(invoice);
+            invoice.setTotalPrice();
+            return invoice;
+        } catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistsException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     @RequestMapping(value = "/createCashlessInvoice", method = RequestMethod.POST)
-    public Invoice addCashlessInvoice(@RequestParam(value="name") String name,
-                                      @RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,
+    public Invoice addCashlessInvoice(@RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,
                                       @RequestParam(value="customerId") int customerId,
-                                      @RequestParam(value="promoCode") String promo)
+                                      @RequestParam(value="promoCode", required = false) String promoCode)
     {
         ArrayList<Food> foods = new ArrayList<>();
         for (int food : foodIdList) {
@@ -65,37 +90,11 @@ public class InvoiceController {
         }
         try {
             Invoice invoice = new CashlessInvoice(DatabaseInvoice.getLastId()+1, foods,
-                    DatabaseCustomer.getCustomerById(customerId), DatabasePromo.getPromoByCode(promo));
+                    DatabaseCustomer.getCustomerById(customerId), DatabasePromo.getPromoByCode(promoCode));
             DatabaseInvoice.addInvoice(invoice);
+            invoice.setTotalPrice();
             return invoice;
         } catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistsException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
-
-    @RequestMapping(value = "/invoice/createCashInvoice", method = RequestMethod.POST)
-    public Invoice addCashInvoice(@RequestParam(value="name") String name,
-                                  @RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,
-                                  @RequestParam(value="customerId") int customerId,
-                                  @RequestParam(value="deliveryFee") int deliveryFee)
-    {
-        ArrayList<Food> foods = new ArrayList<>();
-        for (int food : foodIdList)
-        {
-            try {
-                foods.add(DatabaseFood.getFoodById(food));
-            } catch (FoodNotFoundException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        try
-        {
-            Invoice invoice = new CashInvoice(DatabaseInvoice.getLastId()+1, foods, DatabaseCustomer.getCustomerById(customerId), deliveryFee);
-            DatabaseInvoice.addInvoice(invoice);
-            return invoice;
-        } catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistsException e)
-        {
             System.out.println(e.getMessage());
             return null;
         }

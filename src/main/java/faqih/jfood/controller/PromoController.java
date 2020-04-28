@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RequestMapping("/promo")
+@CrossOrigin(origins = "*", allowedHeaders = "")
 @RestController
 public class PromoController {
     @RequestMapping(value = "", method = RequestMethod.GET)

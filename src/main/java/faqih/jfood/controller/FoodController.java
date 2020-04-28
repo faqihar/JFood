@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RequestMapping("/food")
+@CrossOrigin(origins = "*", allowedHeaders = "")
 @RestController
 public class FoodController {
     @RequestMapping(value = "", method = RequestMethod.GET)

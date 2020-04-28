@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RequestMapping("/seller")
+@CrossOrigin(origins = "*", allowedHeaders = "")
 @RestController
 public class SellerController {
     @RequestMapping(value = "", method = RequestMethod.GET)
