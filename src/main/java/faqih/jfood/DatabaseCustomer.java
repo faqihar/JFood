@@ -3,37 +3,73 @@ package faqih.jfood;
 import java.util.ArrayList;
 
 /**
- * Write a description of class DatabaseFood here.
- *
- * @author Faqih Achmad
- * @version 1.2 (27 feb 2020)
- * 
+ * class DatabaseCustomer
+ * @author Faqih
+ * @version 6/6/2020
  */
-public class DatabaseCustomer{
+
+public class DatabaseCustomer
+{
+
     private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<>();
     private static int lastId = 0;
 
+    /**
+     * Get customer database
+     * @return CUSTOMER_DATABASE
+     */
     public static ArrayList<Customer> getCustomerDatabase(){
         return CUSTOMER_DATABASE;
     }
 
-    public static int getLastId() {
+    /**
+     * Get customer login.
+     * @param email email
+     * @param password password
+     * @return customer
+     */
+    public static Customer getCustomerLogin(String email, String password){
+        for (Customer customer : CUSTOMER_DATABASE){
+            if (customer.getEmail().equals(email) && customer.getPassword().equals(password))
+            {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get last id
+     * @return lastId
+     */
+    public static int getLastId(){
         return lastId;
     }
 
+    /**
+     * Get customer by id.
+     * @param id the id
+     * @return customer
+     * @throws CustomerNotFoundException the customer not found exception
+     */
     public static Customer getCustomerById(int id) throws CustomerNotFoundException{
-        for(Customer customer : CUSTOMER_DATABASE){
-            if(customer.getId() == id){
+        for (Customer customer : CUSTOMER_DATABASE) {
+            if (customer.getId() == id) {
                 return customer;
             }
         }
         throw new CustomerNotFoundException(id);
     }
 
-    public static boolean addCustomer(Customer customer) throws EmailAlreadyExistsException
-    {
-        for(Customer cust : CUSTOMER_DATABASE){
-            if(cust.getEmail() == customer.getEmail()){
+    /**
+     * Add customer boolean.
+     * @param customer the id
+     * @return the boolean
+     * @throws EmailAlreadyExistsException the customer not found exception
+     */
+    public static boolean addCustomer(Customer customer) throws EmailAlreadyExistsException{
+        for(Customer customers : CUSTOMER_DATABASE){
+            if (customers.getEmail().equals(customer.getEmail())) {
                 throw new EmailAlreadyExistsException(customer);
             }
         }
@@ -42,23 +78,20 @@ public class DatabaseCustomer{
         return true;
     }
 
+    /**
+     * Remove customer boolean.
+     * @param id the id
+     * @return the boolean
+     * @throws CustomerNotFoundException the customer not found exception
+     */
     public static boolean removeCustomer(int id) throws CustomerNotFoundException{
-        for(Customer customer : CUSTOMER_DATABASE){
-            if(customer.getId() == id){
-                CUSTOMER_DATABASE.remove(customer);
+        for(int i = 0; i < CUSTOMER_DATABASE.size(); i++){
+            Customer customer = CUSTOMER_DATABASE.get(i);
+            if (customer.getId() == id){
+                CUSTOMER_DATABASE.remove(i);
                 return true;
             }
         }
         throw new CustomerNotFoundException(id);
-    }
-
-    public static Customer getCustomerLogin(String email, String password){
-        for (Customer customerPtr : CUSTOMER_DATABASE){
-            if (customerPtr.getEmail().equals(email) && customerPtr.getPassword().equals(password))
-            {
-                return customerPtr;
-            }
-        }
-        return null;
     }
 }

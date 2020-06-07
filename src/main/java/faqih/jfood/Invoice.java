@@ -1,51 +1,41 @@
 package faqih.jfood;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.text.*;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.util.regex.*;
 import java.util.*;
 
-
 /**
+ * class Invoice
  * @author Faqih
- * @version 27 Februari 2020
-**/
+ * @version 07/6/2020
+ */
+
 public abstract class Invoice
 {
-    //variable yang digunakan pada class Invoice
     private int id;
-    //private int idFood;
     private ArrayList<Food> foods;
     private Calendar date;
     protected int totalPrice;
     private Customer customer;
-    //private PaymentType paymentType;
-    private InvoiceStatus invoiceStatus;
-
-    private SimpleDateFormat tanggal = new SimpleDateFormat("dd MMMM yyyy");
+    private PaymentType paymentType;
+    private InvoiceStatus status;
 
     /**
-     * @param
+     * Constructor for objects of class Invoice
+     * @param id invoice's id
+     * @param foods invoice's food
+     * @param customer invoice's customer
      */
     public Invoice(int id, ArrayList<Food> foods, Customer customer)
     {
         this.id = id;
         this.foods = foods;
-        Calendar now = Calendar.getInstance();
-        this.date = now;
+        this.date = Calendar.getInstance();
         this.customer = customer;
-        this.invoiceStatus = InvoiceStatus.Ongoing;
-        //this.totalPrice = totalPrice;
-        //this.invoiceStatus = invoiceStatus.Ongoing;
+        this.status = InvoiceStatus.Ongoing;
     }
 
     /**
-     * @return nilai yang dikembalikan yaitu id
+     * Get id
+     * @return id
      */
     public int getId()
     {
@@ -53,7 +43,8 @@ public abstract class Invoice
     }
 
     /**
-     * @return nilai yang dikembalikan yaitu idFood
+     * Get food
+     * @return foods
      */
     public ArrayList<Food> getFoods()
     {
@@ -61,7 +52,8 @@ public abstract class Invoice
     }
 
     /**
-     * @return nilai yang dikembalikan yaitu date
+     * Get date
+     * @return date
      */
     public Calendar getDate()
     {
@@ -69,7 +61,8 @@ public abstract class Invoice
     }
 
     /**
-     * @return nilai yang dikembalikan yaitu totalPrice
+     * Get total price
+     * @return totalPrice
      */
     public int getTotalPrice()
     {
@@ -77,7 +70,8 @@ public abstract class Invoice
     }
 
     /**
-     * @return nilai yang dikembalikan yaitu customer
+     * Get customer
+     * @return customer
      */
     public Customer getCustomer()
     {
@@ -86,13 +80,18 @@ public abstract class Invoice
 
     public abstract PaymentType getPaymentType();
 
+    /**
+     * Get invoice status
+     * @return status
+     */
     public InvoiceStatus getInvoiceStatus()
     {
-        return invoiceStatus;
+        return status;
     }
 
     /**
-     * @param parameter yang digunakan yaitu id
+     * Set id
+     * @param id id
      */
     public void setId(int id)
     {
@@ -100,7 +99,8 @@ public abstract class Invoice
     }
 
     /**
-     * @param parameter yang digunakan yaitu idFood
+     * Set food
+     * @param foods foods
      */
     public void setFoods(ArrayList<Food> foods)
     {
@@ -108,51 +108,41 @@ public abstract class Invoice
     }
 
     /**
-     * @param parameter yang digunakan yaitu date
+     * Set date
+     * @param year year
+     * @param month month
+     * @param dayOfMonth day
      */
-    public void setDate(Calendar date)
-    {
-        this.date = date;
-    }
-
     public void setDate(int year, int month, int dayOfMonth)
     {
-        date = new GregorianCalendar (year, month, dayOfMonth);
+        this.date.set(year, month, dayOfMonth);
     }
 
     /**
-     * @param parameter yang digunakan yaitu totalPrice
+     * Set total price
      */
     public abstract void setTotalPrice();
 
     /**
-     * @param parameter yang digunakan yaitu customer
+     * Set customer
+     * @param customer customer
      */
     public void setCustomer(Customer customer)
     {
         this.customer = customer;
     }
 
-    // public abstract void setPaymentType();
-
+    /**
+     * Set invoice status
+     * @param status status
+     */
     public void setInvoiceStatus(InvoiceStatus status)
     {
-        this.invoiceStatus = status;
+        this.status = status;
     }
 
-    /*
-    public abstract void printData();
-
-    {
-        System.out.println("==========INVOICE==========");
-        System.out.println("ID: "+id);
-        System.out.println("Food ID: "+idFood);
-        System.out.println("Date: "+date);
-        System.out.println("Customer: "+getCustomer().getName());
-        System.out.println("Total Price: "+totalPrice);
-        System.out.println("Status: "+status);
-
-    }
-    */
+    /**
+     * Method toString
+     */
     public abstract String toString();
 }
