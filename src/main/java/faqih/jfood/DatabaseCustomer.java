@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 /**
  * class DatabaseCustomer
- * @author Faqih
- * @version 6/6/2020
+ * @author Faqih Achmad
+ * @version 7/6/2020
  */
 
 public class DatabaseCustomer

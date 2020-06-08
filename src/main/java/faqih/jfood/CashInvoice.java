@@ -6,57 +6,66 @@ import java.util.*;
 import java.text.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.regex.*;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
-import java.lang.Object;
 
 /**
- * Write a description of class CashInvoice here.
- *
- * @author Faqih
- * @version 2
+ * class CashInvoice
+ * @author Faqih Achmad
+ * @version 7/6/2020
  */
 public class CashInvoice extends Invoice {
     // instance variables - replace the example below with your own
     private static final PaymentType PAYMENT_TYPE = PaymentType.Cash;
     private int deliveryFee;
 
-
     /**
      * Constructor for objects of class CashInvoice
+     * @param id id
+     * @param foods foods
+     * @param customer customer
      */
     public CashInvoice(int id, ArrayList<Food> foods, Customer customer) {
         super(id, foods, customer);
     }
 
-
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @paramsample parameter for a method
-     * @return the sum of x and y
+     * Constructor for objects of class CashInvoice
+     * @param id id
+     * @param foods foods
+     * @param customer customer
+     * @param deliveryFee delivery fee
      */
     public CashInvoice(int id, ArrayList<Food> foods, Customer customer, int deliveryFee) {
         super(id, foods, customer);
         this.deliveryFee = deliveryFee;
     }
 
+    /**
+     * Get payment type
+     * @return PAYMENT_TYPE
+     */
     public PaymentType getPaymentType() {
         return PAYMENT_TYPE;
     }
 
+    /**
+     * Get delivery fee
+     * @return deliveryFee
+     */
     public int getDeliveryFee() {
         return deliveryFee;
     }
 
+    /**
+     * Set delivery fee
+     * @param deliveryFee delivery fee
+     */
     public void setDeliveryFee(int deliveryFee) {
         this.deliveryFee = deliveryFee;
     }
 
+    /**
+     * Set total price
+     */
     public void setTotalPrice() {
         if(deliveryFee > 0)
         {
@@ -73,6 +82,9 @@ public class CashInvoice extends Invoice {
         }
     }
 
+    /**
+     * Method toString
+     */
     public String toString() {
             String foodName = "";
             for (Food food : getFoods()) {

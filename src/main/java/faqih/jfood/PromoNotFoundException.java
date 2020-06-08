@@ -1,5 +1,11 @@
 package faqih.jfood;
 
+/**
+ * class PromoNotFoundException
+ * @author Faqih Achmad
+ * @version 7/6/2020
+ */
+
 public class PromoNotFoundException extends Exception {
     private int promo_error;
 

@@ -1,5 +1,11 @@
 package faqih.jfood;
 
+/**
+ * class SellerNotFoundException
+ * @author Faqih Achmad
+ * @version 7/6/2020
+ */
+
 public class SellerNotFoundException extends Exception{
     private int seller_error;
 

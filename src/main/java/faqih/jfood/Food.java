@@ -1,10 +1,9 @@
 package faqih.jfood;
+
 /**
- * Write a description of class Food here.
- *
+ * class Food
  * @author Faqih Achmad
- * @version 1.2 (27 feb 2020)
- * 
+ * @version 7/6/2020
  */
 public class Food //create class food
 {

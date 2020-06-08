@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.*;
 
 /**
- * Write a description of class DatabaseFood here.
- *
+ * class DatabaseSeller
  * @author Faqih Achmad
- * @version 1.2 (27 feb 2020)
- * 
+ * @version 7/6/2020
  */
 
 public class DatabaseSeller

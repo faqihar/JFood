@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * class DatabaseCustomerPostgre
- * @author Faqih
+ * @author Faqih Achmad
  * @version 7/6/2020
  */
 

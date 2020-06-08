@@ -1,10 +1,9 @@
 package faqih.jfood;
+
 /**
- * Write a description of class Seller here.
- *
+ * class Seller
  * @author Faqih Achmad
- * @version 1.2 (27 feb 2020)
- * 
+ * @version 7/6/2020
  */
 public class Seller//create class seller
 {

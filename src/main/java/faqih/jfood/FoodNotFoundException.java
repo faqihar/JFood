@@ -1,5 +1,11 @@
 package faqih.jfood;
 
+/**
+ * class FoodNotFoundException
+ * @author Faqih Achmad
+ * @version 7/6/2020
+ */
+
 public class FoodNotFoundException extends Exception {
     private int food_error;
 

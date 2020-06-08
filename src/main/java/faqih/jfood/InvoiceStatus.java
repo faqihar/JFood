@@ -1,10 +1,11 @@
 package faqih.jfood;
+
 /**
- * Enumeration class InvoiceStatus - write a description of the enum class here
- *
- * @author (your name here)
- * @version (version number or date here)
+ * class InvoiceStatus
+ * @author Faqih Achmad
+ * @version 7/6/2020
  */
+
 public enum InvoiceStatus
 {
     Ongoing("Ongoing"),

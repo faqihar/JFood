@@ -1,10 +1,11 @@
 package faqih.jfood;
+
 /**
- * Enumeration class FoodCategory - write a description of the enum class here
- *
- * @author faqih achmad
- * @version 
+ * class FoodCategory
+ * @author Faqih Achmad
+ * @version 7/6/2020
  */
+
 public enum FoodCategory
 {
     Beverages("Beverages"), Coffe("Coffe"), Western("Western"), Snacks("Snacks"), Rice("Rice"), Noddles("Noodles"), Bakery("Bakery"), Japanese("Japanese");

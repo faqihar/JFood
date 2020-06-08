@@ -1,11 +1,11 @@
 package faqih.jfood;
+
 /**
- * Write a description of class Location here.
- *
+ * class Location
  * @author Faqih Achmad
- * @version 1.2 (27 feb 2020)
- * 
+ * @version 7/6/2020
  */
+
 public class Location//create class Location
 {
     /**

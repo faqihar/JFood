@@ -1,9 +1,9 @@
-package faqih.jfood;
+
+
 /**
- * Enumeration class PaymentType - write a description of the enum class here
- *
- * @author (your name here)
- * @version (version number or date here)
+ * class PaymentType
+ * @author Faqih Achmad
+ * @version 7/6/2020
  */
 public enum PaymentType
 {

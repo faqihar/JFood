@@ -1,5 +1,11 @@
 package faqih.jfood;
 
+/**
+ * class InvoiceNotFoundException
+ * @author Faqih Achmad
+ * @version 7/6/2020
+ */
+
 public class InvoiceNotFoundException extends Exception {
     private int invoice_error;
 

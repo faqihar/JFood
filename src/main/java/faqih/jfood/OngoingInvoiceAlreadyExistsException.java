@@ -1,5 +1,11 @@
 package faqih.jfood;
 
+/**
+ * class OngoingInvoiceAlreadyExistsException
+ * @author Faqih Achmad
+ * @version 7/6/2020
+ */
+
 public class OngoingInvoiceAlreadyExistsException extends Exception  {
     private Invoice invoice_error;
 

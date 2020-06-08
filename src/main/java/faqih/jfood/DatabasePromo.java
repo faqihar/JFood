@@ -5,19 +5,11 @@ import java.util.*;
 
 
 /**
- * Write a description of class DatabaseFood here.
- *
+ * class DatabasePromo
  * @author Faqih Achmad
- * @version 1.2 (27 feb 2020)
- * 
+ * @version 7/6/2020
  */
 
-/**
- * Write a description of class DatabasePromo here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class DatabasePromo
 {
     // instance variables - replace the example below with your own
@@ -27,19 +19,29 @@ public class DatabasePromo
     private static int lastId = 0;
 
     /**
-     * Constructor for objects of class DatabaseSeller
+     * Get promo database
+     * @return PROMO_DATABASE
      */
-
     public static ArrayList<Promo> getPromoDatabase()
     {
         return PROMO_DATABASE;
     }
 
+    /**
+     * Get Last Id
+     * @return lastId
+     */
     public static int getLastId()
     {
         return lastId;
     }
 
+    /**
+     * Get promo by id.
+     * @param id id
+     * @return promo
+     * @throws PromoNotFoundException the promo not found exception
+     */
     public static Promo getPromoById(int id) throws PromoNotFoundException
     {
         for(Promo promo : PROMO_DATABASE)
@@ -52,6 +54,11 @@ public class DatabasePromo
         throw new PromoNotFoundException(id);
     }
 
+    /**
+     * Get promo by code.
+     * @param code code
+     * @return promo
+     */
     public static Promo getPromoByCode(String code)
     {
         for(Promo promo : PROMO_DATABASE)
@@ -64,6 +71,12 @@ public class DatabasePromo
         return null;
     }
 
+    /**
+     * Add promo boolean.
+     * @param promo the id
+     * @return boolean
+     * @throws PromoCodeAlreadyExistsException promo code already exist exception
+     */
     public static boolean addPromo(Promo promo) throws PromoCodeAlreadyExistsException
     {
         for(Promo pro : PROMO_DATABASE){
@@ -76,6 +89,12 @@ public class DatabasePromo
         return true;
     }
 
+    /**
+     * Remove promo boolean.
+     * @param id id
+     * @return boolean
+     * @throws PromoNotFoundException the promo not found exception
+     */
     public static boolean removePromo(int id) throws PromoNotFoundException
     {
         for(int i = 0;  i < PROMO_DATABASE.size(); i++)
@@ -90,6 +109,11 @@ public class DatabasePromo
         throw new PromoNotFoundException(id);
     }
 
+    /**
+     * Activated promo boolean.
+     * @param id the id
+     * @return boolean
+     */
     public static boolean activatePromo(int id)
     {
         for(Promo promo: PROMO_DATABASE)
@@ -103,6 +127,11 @@ public class DatabasePromo
         return false;
     }
 
+    /**
+     * Deactivated promo boolean.
+     * @param id the id
+     * @return boolean
+     */
     public static boolean deactivatePromo(int id)
     {
         for(Promo promo:PROMO_DATABASE)

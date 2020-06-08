@@ -1,23 +1,16 @@
 package faqih.jfood;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.*;
 import java.text.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.regex.*;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
-import java.lang.Object;
 
 /**
- * Write a description of class CashlessInvoice here.
- *
- * @author Faqih
- * @version 
+ * class CashlessInvoice
+ * @author Faqih Achmad
+ * @version 7/6/2020
  */
 public class CashlessInvoice extends Invoice
 {
@@ -25,43 +18,61 @@ public class CashlessInvoice extends Invoice
     private static final PaymentType PAYMENT_TYPE=PaymentType.Cashless;
     private Promo promo;
 
-
     /**
      * Constructor for objects of class CashlessInvoice
+     * @param id id
+     * @param foods foods
+     * @param customer customer
      */
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer)
     {
         // initialise instance variables
         super(id, foods, customer);
     }
-    
-        /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+
+    /**
+     * Constructor for objects of class CashlessInvoice
+     * @param id id
+     * @param foods foods
+     * @param customer customer
+     * @param promo promo
      */
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer, Promo promo)
     {
         super(id, foods, customer);
         this.promo=promo;
     }
-    
+
+    /**
+     * Get payment type
+     * @return PAYMENT_TYPE
+     */
     public PaymentType getPaymentType()
     {
         return PAYMENT_TYPE;
     }
-    
+
+    /**
+     * Get promo
+     * @return promo
+     */
     public Promo getPromo()
     {
         return promo;
-    } 
-       
+    }
+
+    /**
+     * Set promo
+     * @param  promo promo
+     */
     public void setPromo(Promo promo)
     {
         this.promo=promo;
     }
 
+    /**
+     * Set total price
+     */
     public void setTotalPrice() {
         for(Food foods: getFoods())
         {
@@ -73,6 +84,9 @@ public class CashlessInvoice extends Invoice
         }
     }
 
+    /**
+     * Method toString
+     */
     public String toString(){
         int tempPrice = 0;
         String foodName = "";

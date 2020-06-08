@@ -3,6 +3,12 @@ package faqih.jfood;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * class DatabaseConnection
+ * @author Faqih Achmad
+ * @version 7/6/2020
+ */
+
 public class DatabaseConnection {
     /**
      * Connection connection.

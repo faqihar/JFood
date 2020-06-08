@@ -4,16 +4,33 @@ import faqih.jfood.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
+/**
+ * class InvoiceController
+ * @author Faqih Achmad
+ * @version 7/6/2020
+ */
+
 @RequestMapping("/invoice")
 @CrossOrigin(origins = "*", allowedHeaders = "")
 @RestController
 
 public class InvoiceController {
+    /**
+     * Get database invoice
+     * @return DatabaseInvoice.getInvoiceDatabase()
+     */
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ArrayList<Invoice> getAllInvoice()
     {
         return DatabaseInvoice.getInvoiceDatabase();
     }
+
+    /**
+     * Get invoice by id
+     * @param id id
+     * @return DatabaseInvoice.getInvoiceById(id)
+     */
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Invoice getInvoiceById(@PathVariable int id) throws InvoiceNotFoundException {
@@ -22,12 +39,25 @@ public class InvoiceController {
         return invoice;
     }
 
+    /**
+     * Get invoice by customer
+     * @param customerId customer id
+     * @return DatabaseInvoice.getInvoiceByCustomer(customerId)
+     */
+
     @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET)
     public ArrayList<Invoice> getInvoiceByCustomer(@PathVariable int customerId)
             throws CustomerNotFoundException
     {
         return DatabaseInvoice.getInvoiceByCustomer(customerId);
     }
+
+    /**
+     * Get invoice by status
+     * @param id customer id
+     * @param invoiceStatus status
+     * @return DatabaseInvoice.getInvoiceById(id)
+     */
 
     @RequestMapping(value = "/invoiceStatus/{id}", method = RequestMethod.PUT)
     public Invoice changeInvoiceStatus(@PathVariable int id,
@@ -39,6 +69,13 @@ public class InvoiceController {
         }
         return null;
     }
+
+    /**
+     * Delete invoice by id
+     * @param id customer id
+     * @return DatabaseInvoice.removeInvoice(id)
+     * @throws InvoiceNotFoundException invoice not found exceptions
+     */
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public boolean removeInvoice(@PathVariable int id)
@@ -54,6 +91,13 @@ public class InvoiceController {
         }
     }
 
+    /**
+     * Create cash invoice
+     * @param foodIdList food id
+     * @param customerId customer id
+     * @param deliveryFee delivery fee
+     * @return invoice
+     */
 
     @RequestMapping(value = "/createCashInvoice", method = RequestMethod.POST)
     public Invoice addCashInvoice(@RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,
@@ -83,6 +127,14 @@ public class InvoiceController {
             return null;
         }
     }
+
+    /**
+     * Create cashless invoice
+     * @param foodIdList food id
+     * @param customerId customer id
+     * @param promoCode promo code
+     * @return invoice
+     */
 
     @RequestMapping(value = "/createCashlessInvoice", method = RequestMethod.POST)
     public Invoice addCashlessInvoice(@RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,

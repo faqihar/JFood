@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * class CustomerController
- * @author Faqih
+ * @author Faqih Achmad
  * @version 7/6/2020
  */
 
